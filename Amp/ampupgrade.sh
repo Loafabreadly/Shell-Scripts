@@ -39,13 +39,19 @@ update() {
 }
 
 housekeeping() {
-
+	echo
+	echo "Auto Removing old packages"
+	echo
 	sudo apt-get autoremove -y;
 	check_exit_status
-
+	echo
+	echo "Running APT Auto-clear"
+	echo
 	sudo apt-get autoclean -y;
 	check_exit_status
-
+	echo
+	echo "Updating APT DB"
+	echo
 	sudo updatedb;
 	check_exit_status
 }
@@ -64,7 +70,6 @@ ampUpdate() {
 }
 
 exitScript() {
-	clear
 	echo
 	echo "------------------------"
 	echo "- AMP Update Completed -"

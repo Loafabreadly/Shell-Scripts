@@ -39,13 +39,19 @@ update() {
 }
 
 housekeeping() {
-
+	echo
+	echo "Auto Removing old packages"
+	echo
 	sudo apt-get autoremove -y;
 	check_exit_status
-
+	echo
+	echo "Running APT Auto-clear"
+	echo
 	sudo apt-get autoclean -y;
 	check_exit_status
-
+	echo
+	echo "Updating APT DB"
+	echo
 	sudo updatedb;
 	check_exit_status
 }
@@ -75,7 +81,6 @@ piholeDark() {
 }
 
 exitScript() {
-	clear
 	echo
 	echo "---------------------------"
 	echo "- Pihole Update Completed -"
@@ -92,3 +97,4 @@ housekeeping
 endSystemUpdate
 piholeUpdate
 piholeDark
+exitScript
