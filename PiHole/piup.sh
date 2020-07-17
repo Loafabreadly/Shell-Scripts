@@ -25,7 +25,7 @@ check_exit_status() {
 greeting() {
 
 	echo
-	echo "Hello, $USER. Running Pi-Hole Auto-Updater v0.1"
+	echo "Hello, $USER. Running Pi-Hole Auto-Updater v0.2"
 	echo
 }
 
@@ -67,9 +67,8 @@ piholeUpdate() {
 
 piholeDark() {
 
-	cd /var/www/html/admin/style/vendor/
-	sudo git clone https://github.com/thomasbnt/Night_Pihole.git
-	cd Night_Pihole
+	cd /var/www/html/
+	sudo wget https://raw.githubusercontent.com/lkd70/PiHole-Dark/master/install.sh
 	sudo chmod +x install.sh
 	sudo ./install.sh
 
