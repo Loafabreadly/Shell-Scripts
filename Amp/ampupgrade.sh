@@ -25,7 +25,7 @@ check_exit_status() {
 greeting() {
 
 	echo
-	echo "Hello, $USER. Running AMP Auto-Updater v0.1"
+	echo "Hello, $USER. Running AMP Auto-Updater v0.2"
 	echo
 }
 
@@ -64,9 +64,11 @@ ampUpdate() {
 }
 
 exitScript() {
+	clear
 	echo
 	echo "------------------------"
 	echo "- AMP Update Completed -"
+	echo "-    Exiting Script    -"
 	echo "------------------------"
 	echo
 	exit
