@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #Functions
 check_exit_status() {
 
