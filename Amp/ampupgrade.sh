@@ -60,9 +60,7 @@ endSystemUpdate() {
 }
 
 ampUpdate() {
-	sudo su -l amp
-	ampinstmgr upgradeall
-	ampinstmgr startall
+	sudo su - amp -c "ampinstmgr upgradeall;ampinstmgr startall"
 }
 
 exitScript() {
