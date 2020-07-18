@@ -12,6 +12,7 @@ startInstall () {
 	sudo cp Amp/restartADS.sh ~/bin/adsr
 	sudo cp PiHole/piup.sh ~/bin/piup
 	sudo cp Ubuntu/grp.sh ~/bin/grp
+	sudo cp Ubuntu/up.sh ~/bin/up
 	ls -l ~/bin
 	echo "Attempting to export variables"
 	echo "If this doesn't work, run the following"
