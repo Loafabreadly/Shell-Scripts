@@ -3,8 +3,8 @@
 #v0.1
 startInstall () {
 	
-	cd ~/Shell-Scipts/
-	sudo chmod +x -R ../Shell-Scipts/
+	cd ~/Shell-Scripts/
+	sudo chmod +x -R ../Shell-Scripts/
 	sudo cp Amp/ampupgrade.sh ~/bin/ampup
 	sudo cp Amp/ampdeploy.sh ~/bin/ampdeploy
 	sudo cp PiHole/piup.sh ~/bin/piup
