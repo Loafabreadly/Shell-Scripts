@@ -13,6 +13,7 @@ fi
 startInstall () {
 	
 	cd ~/Shell-Scipts/
+	sudo chmod +x -R ../Shell-Scipts/
 	sudo cp Amp/ampupgrade.sh ~/bin/ampup
 	sudo cp Amp/ampdeploy.sh ~/bin/ampdeploy
 	sudo cp PiHole/piup.sh ~/bin/piup
