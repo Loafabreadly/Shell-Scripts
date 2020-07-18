@@ -24,7 +24,7 @@ startInstall () {
 	export PATH="~/bin:$PATH"
 	source ~/.bashrc
 }
-$DIR
+$DIR = "~/bin/"
 if [ ! -d "$DIR" ] 
 then
 	echo
