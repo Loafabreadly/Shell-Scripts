@@ -1,7 +1,7 @@
 #!/bin/bash
 #V0.5
 read -p 'Hostname: ' hostName
-echo "Setting hostname to $hostName"
+echo Setting hostname to $hostName
 sudo hostnamectl set-hostname $hostName
 sudo sed 's/satine/$hostName/g' /etc/hosts
 echo
