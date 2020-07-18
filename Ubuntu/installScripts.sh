@@ -20,11 +20,11 @@ startInstall () {
 	source ~/.bashrc
 }
 
-if [ -d "~/bin" ]; then
-	echo "Bin exists"
+if [ ! -d "~/bin" ]; then
+	echo "Bin doesn't exist"
+	mkdir ~/bin
 	startInstall
 else
-	mkdir ~/bin
 	startInstall
 fi
 
