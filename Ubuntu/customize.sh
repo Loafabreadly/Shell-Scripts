@@ -16,8 +16,6 @@ echo
 echo "Setting IP config"
 echo
 sudo sed -i 's/10.0.50.30/'$ip'/' /etc/netplan/50-cloud-init.yaml
-echo "Applying IP configuration"
-sudo netplan --debug apply
 echo
 echo "Installing Script repository"
 echo
@@ -30,5 +28,9 @@ sudo git clone https://github.com/Birdgeek/Shell-Scripts.git
 sudo chmod -R +x ./Shell-Scripts/
 source ./Shell-Scripts/Ubuntu/installScripts.sh
 echo "Customization complete! Please reboot the system"
+sleep 3
+echo "Applying IP configuration"
+sudo netplan --debug apply
+sudo reboot now
 
 
