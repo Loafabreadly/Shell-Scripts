@@ -31,6 +31,7 @@ echo "Customization complete! Please reboot the system"
 sleep 3
 echo "Applying IP configuration"
 sudo netplan --debug apply
+sleep 2
 sudo reboot now
 
 
