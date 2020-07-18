@@ -15,7 +15,7 @@ startInstall () {
 	ls -l ~/bin
 	echo "Attempting to export variables"
 	echo "If this doesn't work, run the following"
-	echo "export PATH=~/bin:$PATH"
+	echo "export PATH=~/bin:'$PATH'"
 	echo "source ~/.bashrc"
 	export PATH="~/bin:$PATH"
 	source ~/.bashrc
@@ -26,7 +26,8 @@ then
 	startInstall
 else
 	mkdir ~/bin
+	startInstall
 fi
 
-	startInstall
+	
 
