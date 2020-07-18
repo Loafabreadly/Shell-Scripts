@@ -2,7 +2,6 @@
 #Install Scripts Scipt
 #v0.5
 startInstall () {
-	
 	cd ~/Shell-Scripts/
 	echo
 	echo "Changing execute permissions for all scripts"
@@ -24,17 +23,5 @@ startInstall () {
 	export PATH="~/bin:$PATH"
 	source ~/.bashrc
 }
-$DIR = "~/bin/"
-if [ ! -d "$DIR" ] 
-then
-	echo
-	echo "Bin doesn't exist"
-	echo
-	mkdir ~/bin
-	startInstall
-else
-	startInstall
-fi
-
-	
-
+mkdir -p ~/bin
+startInstall
