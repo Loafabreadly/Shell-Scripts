@@ -1,15 +1,6 @@
 #!/bin/bash
 #Install Scripts Scipt
 #v0.1
-if [ -d "~/bin" ]
-then
-	startInstall
-else
-	mkdir ~/bin
-fi
-
-	startInstall
-
 startInstall () {
 	
 	cd ~/Shell-Scipts/
@@ -22,3 +13,13 @@ startInstall () {
 	export PATH=~/bin:$PATH
 	source ~/.bashrc
 }
+
+if [ -d "~/bin" ]
+then
+	startInstall
+else
+	mkdir ~/bin
+fi
+
+	startInstall
+
