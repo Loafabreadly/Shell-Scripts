@@ -3,10 +3,10 @@
 read -p 'Hostname: ' hostName
 echo Setting hostname to $hostName
 sudo hostnamectl set-hostname $hostName
-sudo sed 's/satine/'$hostName'/g' /etc/hosts
+sudo sed -i 's/satine/'$hostName'/g' /etc/hosts
 echo
 echo "Hostname Set!"
-echo	
+echo
 echo
 echo "Fixing known Ubuntu1804 DNS issue"
 echo
@@ -15,9 +15,9 @@ read -p 'Please enter your desirec IP (10.0.50.x):' ip
 echo
 echo "Setting IP config"
 echo
-sudo sed  's/10.0.50.30/'$ip'/g' /etc/netplan/50-cloud-init.yaml
+sudo sed -i 's/10.0.50.30/'$ip'/' /etc/netplan/50-cloud-init.yaml
 echo "Applying IP configuration"
-sudo netplan apply --debug
+sudo netplan --debug apply
 echo
 echo "Installing Script repository"
 echo
