@@ -1,6 +1,6 @@
 #!/bin/bash
 #Install Scripts Scipt
-#v0.1
+#v0.5
 startInstall () {
 	
 	cd ~/Shell-Scripts/
@@ -14,13 +14,12 @@ startInstall () {
 	sudo cp Ubuntu/grp.sh ~/bin/grp
 	sudo cp Ubuntu/up.sh ~/bin/upds
 	sudo cp Ubuntu/installScripts.sh ~/bin/reloadscripts
-	ls -l ~/bin
 	echo "Attempting to export variables"
 	export PATH="~/bin:$PATH"
 	source ~/.bashrc
 }
 
-if [ ! -d "~/bin" ] 
+if [ ! -d "~/bin"/ ] 
 then
 	echo "Bin doesn't exist"
 	mkdir ~/bin
