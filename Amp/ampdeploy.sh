@@ -25,7 +25,7 @@ checkExitStatus() {
 greeting() {
 
 	echo
-	echo "Hello, $USER. Running Pi-Hole Auto-Updater v0.2"
+	echo "Hello, $USER. Running AMP Deployer v0.1"
 	echo
 }
 
@@ -36,6 +36,9 @@ update() {
 
     sudo apt-get upgrade -y;
 	checkExitStatus
+	
+	sudo apt-get dist-upgrade -y;
+    checkExitStatus
 }
 
 housekeeping() {
@@ -65,29 +68,29 @@ endSystemUpdate() {
 	echo
 }
 
-piholeUpdate() {
-
-	sudo pihole -up
-	checkExitStatus
-}
-
-piholeDark() {
-
-	cd /var/www/html/
-	sudo wget https://raw.githubusercontent.com/lkd70/PiHole-Dark/master/install.sh
-	sudo chmod +x install.sh
-	sudo ./install.sh
-
-}
-
 exitScript() {
 	echo
-	echo "---------------------------"
-	echo "- Pihole Update Completed -"
-	echo "-      Exiting Script     -"
-	echo "---------------------------"
+	echo "------------------------"
+	echo "- AMP Update Completed -"
+	echo "-    Exiting Script    -"
+	echo "------------------------"
 	echo
 	exit
+}
+
+ampDeploy() {
+	echo
+	echo "Fixing known Ubuntu1804 DNS issue"
+	echo
+	sudo rm /etc/resolv.conf
+	sudo ln -sf ../run/systemd/resolve/resolv.conf /etc/resolv.conf
+	sudo systemctl restart resolvconf
+	echo
+	echo "Installing AMP"
+	echo
+	sudo su -l bash <(wget -qO- getamp.sh)
+	
+
 }
 
 #Script
@@ -95,6 +98,5 @@ greeting
 update
 housekeeping
 endSystemUpdate
-piholeUpdate
-piholeDark
+ampDeploy
 exitScript

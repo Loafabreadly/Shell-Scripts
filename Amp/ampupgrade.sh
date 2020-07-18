@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Functions
-check_exit_status() {
+checkExitStatus() {
 
 	if [ $? -eq 0 ]
 	then
@@ -32,10 +32,10 @@ greeting() {
 update() {
 
     sudo apt-get update;
-	check_exit_status
+	checkExitStatus
 
     sudo apt-get upgrade -y;
-	check_exit_status
+	checkExitStatus
 }
 
 housekeeping() {
@@ -43,17 +43,17 @@ housekeeping() {
 	echo "Auto Removing old packages"
 	echo
 	sudo apt-get autoremove -y;
-	check_exit_status
+	checkExitStatus
 	echo
 	echo "Running APT Auto-clear"
 	echo
 	sudo apt-get autoclean -y;
-	check_exit_status
+	checkExitStatus
 	echo
 	echo "Updating APT DB"
 	echo
 	sudo updatedb;
-	check_exit_status
+	checkExitStatus
 }
 
 endSystemUpdate() {

@@ -13,7 +13,6 @@ Clone the Repository, modify to allow for script execution, run your desired scr
 
 ```bash
 sudo git clone https://github.com/Birdgeek/Shell-Scripts.git
-sudo chmod +x ./Shell-Scripts
-sudo ./Amp/ampupdate.sh
+sudo chmod -R +x ./Shell-Scripts/
 ```
 # [Change log](https://github.com/Birdgeek/Shell-Scripts/blob/master/Changelog.md)
