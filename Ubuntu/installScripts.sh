@@ -10,8 +10,8 @@ startInstall () {
 	sudo cp PiHole/piup.sh ~/bin/piup
 	sudo cp Ubuntu/grp.sh ~/bin/grp
 	ls -l ~/bin
-	export PATH=~/bin:$PATH
-	source ~/.bashrc
+	sudo export PATH=~/bin:$PATH
+	sudo source ~/.bashrc
 }
 
 if [ -d "~/bin" ]
