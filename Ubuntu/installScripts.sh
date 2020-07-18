@@ -17,6 +17,7 @@ startInstall () {
 	sudo cp Ubuntu/grp.sh ~/bin/grp
 	sudo cp Ubuntu/up.sh ~/bin/upds
 	sudo cp Ubuntu/installScripts.sh ~/bin/reloadscripts
+	sudo cp Ubuntu/customize.sh ~/bin/customizesys
 	echo
 	echo "Attempting to export variables"
 	echo

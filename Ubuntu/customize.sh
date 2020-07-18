@@ -1,9 +1,6 @@
 #!/bin/bash
 #V0.5
-echo
-echo "Please enter your desired hostname"
-read hostname
-echo
+read -p 'Hostname: ' hostName
 echo "Setting hostname to $hostName"
 sudo hostnamectl set-hostname $hostName
 sudo sed 's/satine/$hostName/g' /etc/hosts
@@ -16,8 +13,7 @@ echo
 sudo rm /etc/resolv.conf
 sudo ln -sf ../run/systemd/resolve/resolv.conf /etc/resolv.conf
 sudo systemctl restart resolvconf
-echo "Please enter your desirec IP (10.0.50.x):"
-read ip
+read -p 'Please enter your desirec IP (10.0.50.x):' ip
 echo
 echo "Setting IP config"
 echo
@@ -27,6 +23,11 @@ sudo netplan apply
 echo
 echo "Installing Script repository"
 echo
+sudo apt update
+sudo apt install git
+sudo git config --global user.name "Birdgeek"
+sudo git config --global user.email "birdgeekthree@gmail.com"
+sudo git config --list | grep user.
 sudo git clone https://github.com/Birdgeek/Shell-Scripts.git
 sudo chmod -R +x ./Shell-Scripts/
 source ./Shell-Scripts/Ubuntu/installScripts.sh
