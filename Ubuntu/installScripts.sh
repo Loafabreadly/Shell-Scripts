@@ -16,15 +16,12 @@ startInstall () {
 	sudo cp Ubuntu/installScripts.sh ~/bin/reloadscripts
 	ls -l ~/bin
 	echo "Attempting to export variables"
-	echo "If this doesn't work, run the following"
-	echo "export PATH=~/bin:'$PATH'"
-	echo "source ~/.bashrc"
 	export PATH="~/bin:$PATH"
 	source ~/.bashrc
 }
 
-if [ -d "~/bin" ]
-then
+if [ -d "~/bin" ]; then
+	echo "Bin exists"
 	startInstall
 else
 	mkdir ~/bin
