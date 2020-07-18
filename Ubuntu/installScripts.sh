@@ -19,7 +19,7 @@ startInstall () {
 	source ~/.bashrc
 }
 
-if [ ! -d "~/bin"/ ] 
+if [ ! -d "~/bin/" ] 
 then
 	echo "Bin doesn't exist"
 	mkdir ~/bin
