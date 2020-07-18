@@ -4,14 +4,21 @@
 startInstall () {
 	
 	cd ~/Shell-Scripts/
+	echo "Changing execute permissions for all scripts"
 	sudo chmod +x -R ../Shell-Scripts/
+	echo "Copying Scripts to bin"
 	sudo cp Amp/ampupgrade.sh ~/bin/ampup
 	sudo cp Amp/ampdeploy.sh ~/bin/ampdeploy
+	sudo cp Amp/restartADS.sh ~/bin/adsr
 	sudo cp PiHole/piup.sh ~/bin/piup
 	sudo cp Ubuntu/grp.sh ~/bin/grp
 	ls -l ~/bin
-	sudo export PATH=~/bin:$PATH
-	sudo source ~/.bashrc
+	echo "Attempting to export variables"
+	echo "If this doesn't work, run the following"
+	echo "export PATH=~/bin:$PATH"
+	echo "source ~/.bashrc"
+	export PATH="~/bin:$PATH"
+	source ~/.bashrc
 }
 
 if [ -d "~/bin" ]
