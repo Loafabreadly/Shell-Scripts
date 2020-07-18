@@ -1,5 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
+## [v0.4] - 7-18-2020
+### Added
+- Added ./Amp/restartADS.sh as a workaround to the current bug in v2.0.2
+- Added ./Ubuntu/grp.sh to allow for auto Git Reset Pull
+- Added ./Ubuntu/installScripts.sh as a way to auto-install all these scripts to be able to be called by their shorthand
+
+### Changed
+- Updated README
+
 ## [v0.3] - 7-17-2020
 ### Added
 - Added ./Amp/ampdeploy.sh for deploy ability from raw Ubuntu1804 install
