@@ -4,9 +4,13 @@
 startInstall () {
 	
 	cd ~/Shell-Scripts/
+	echo
 	echo "Changing execute permissions for all scripts"
+	echo
 	sudo chmod +x -R ../Shell-Scripts/
+	echo
 	echo "Copying Scripts to bin"
+	echo
 	sudo cp Amp/ampupgrade.sh ~/bin/ampup
 	sudo cp Amp/ampdeploy.sh ~/bin/ampdeploy
 	sudo cp Amp/restartADS.sh ~/bin/adsr
@@ -14,14 +18,18 @@ startInstall () {
 	sudo cp Ubuntu/grp.sh ~/bin/grp
 	sudo cp Ubuntu/up.sh ~/bin/upds
 	sudo cp Ubuntu/installScripts.sh ~/bin/reloadscripts
+	echo
 	echo "Attempting to export variables"
+	echo
 	export PATH="~/bin:$PATH"
 	source ~/.bashrc
 }
-
-if [ ! -d "~/bin/" ] 
+$DIR
+if [ ! -d "$DIR" ] 
 then
+	echo
 	echo "Bin doesn't exist"
+	echo
 	mkdir ~/bin
 	startInstall
 else
