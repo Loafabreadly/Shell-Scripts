@@ -88,3 +88,8 @@ exitScript() {
 
 
 #Script
+greeting
+update
+housekeeping
+endSystemUpdate
+exitScript
