@@ -88,7 +88,7 @@ ampDeploy() {
 	echo
 	echo "Installing AMP"
 	echo
-	sudo su -l bash <(wget -qO- getamp.sh)
+	sudo su - root -c "bash <(wget -qO- getamp.sh)"
 	
 
 }

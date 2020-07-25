@@ -13,6 +13,7 @@ Read more about AMP [Here](https://cubecoders.com)
 ### Ubuntu Scripts :penguin:
 * ```./Ubuntu/installScripts.sh``` - Script to install all the scripts! Script-ception!
 * ```./Ubuntu/grp.sh``` - Git Reset Pull on the Shell Scripts repo to auto-pull updates
+* ```./Ubuntu/up.sh``` - Updates System - (Called by ```upds``` command)
 
 ## Installation
 Clone the Repository, modify to allow for script execution, run the install script
