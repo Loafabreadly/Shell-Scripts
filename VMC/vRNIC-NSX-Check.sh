@@ -33,5 +33,9 @@ prepEnv() {
 	echo "SDDC ID set to - $SDDCID"
 	export AUTH_HDR="Authorization: Bearer `curl https://console.cloud.vmware.com/csp/gateway/am/api/auth/api-tokens/authorize -d refresh_token=$APITOKEN | jq --raw-output '.access_token'`"
 	export NSXRP="`curl -H "$AUTH_HDR" https://vmc.vmware.com/vmc/api/orgs/"$ORGID"/sddcs/"$SDDCID" | jq --raw-output '.resource_config.nsx_api_public_endpoint_url'`"
-	echo "The NSX Reverse Proxy URL for the SDDC with ID $SDDCID is `n$NSXRP"
+	echo "The NSX Reverse Proxy URL for the SDDC with ID $SDDCID is "
+	echo "$NSXRP"
 }
+
+#Execute Script
+prepEnv()
