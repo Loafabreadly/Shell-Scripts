@@ -25,7 +25,7 @@ checkExitStatus() {
 greeting() {
 
 	echo
-	echo "Hello, $USER. Running System  Updater v0.5"
+	echo "Hello, $USER. Running System  Updater v0.6"
 	echo
 }
 
@@ -41,11 +41,15 @@ update() {
 	echo
     sudo apt-get upgrade -y;
 	checkExitStatus
-	echo
-	echo "Performing Distro Upgrades"
-	echo
-	sudo apt-get dist-upgrade -y;
-    checkExitStatus	
+	read -p "Do you want to upgrade the Distro OS? (yes/no) " answer
+	if ["$answer" == "yes"]
+	then
+		echo "Performing Distro Upgrades"
+		echo
+		echo
+		sudo apt-get dist-upgrade -y;
+		checkExitStatus	
+	fi
 }
 
 housekeeping() {
@@ -58,11 +62,6 @@ housekeeping() {
 	echo "Running APT Auto-clear"
 	echo
 	sudo apt-get autoclean -y;
-	checkExitStatus
-	echo
-	echo "Updating APT DB"
-	echo
-	sudo updatedb;
 	checkExitStatus
 }
 
@@ -84,6 +83,11 @@ exitScript() {
 	echo "--------------------"
 	echo
 	exit
+	read -p "Do you wish to reboot now? (yes/no) " answer
+	if ["$answer" == "yes"]
+	then
+		sudo reboot now
+	fi
 }
 
 

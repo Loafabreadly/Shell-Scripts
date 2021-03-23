@@ -25,7 +25,7 @@ checkExitStatus() {
 greeting() {
 
 	echo
-	echo "Hello, $USER. Running AMP Auto-Updater v0.2"
+	echo "Hello, $USER. Running AMP Auto-Updater v0.3"
 	echo
 }
 
@@ -48,11 +48,6 @@ housekeeping() {
 	echo "Running APT Auto-clear"
 	echo
 	sudo apt-get autoclean -y;
-	checkExitStatus
-	echo
-	echo "Updating APT DB"
-	echo
-	sudo updatedb;
 	checkExitStatus
 }
 
