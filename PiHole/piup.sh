@@ -3,7 +3,7 @@
 #Functions
 checkExitStatus() {
 
-	if [ $? -eq 0 ]
+	if [$? -eq 0]
 	then
 		echo
 		echo "Success"
@@ -14,11 +14,10 @@ checkExitStatus() {
 		echo
 		
 		read -p "The last command exited with an error. Exit script? (yes/no) " answer
-
-            if [ "$answer" == "yes" ]
-            then
-                exit 1
-            fi
+		if ["$answer" == "yes"]
+		then
+			exit 1
+		fi
 	fi
 }
 
@@ -49,11 +48,6 @@ housekeeping() {
 	echo
 	sudo apt-get autoclean -y;
 	checkExitStatus
-	echo
-	echo "Updating APT DB"
-	echo
-	sudo updatedb;
-	checkExitStatus
 }
 
 endSystemUpdate() {
@@ -72,12 +66,15 @@ piholeUpdate() {
 }
 
 piholeDark() {
-
-	cd /var/www/html/
-	sudo wget https://raw.githubusercontent.com/lkd70/PiHole-Dark/master/install.sh
-	sudo chmod +x install.sh
-	sudo ./install.sh
-
+	read -p "Do you want to install the Dark UI for PiHole? (yes/no)" answer
+	if ["$answer" == "yes"]
+	then
+		echo "Installing Dark UI"
+		cd /var/www/html/
+		sudo wget https://raw.githubusercontent.com/lkd70/PiHole-Dark/master/install.sh
+		sudo chmod +x install.sh
+		sudo ./install.sh
+	fi
 }
 
 exitScript() {
