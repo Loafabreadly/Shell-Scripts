@@ -41,11 +41,11 @@ prepEnv() {
 	sudo curl -k https://gist.githubusercontent.com/h0bbel/4b28ede18d65c3527b11b12fa36aa8d1/raw/314419c944ce401039c7def964a3e06324db1128/sources.list -o /etc/apt/sources.list
 	sudo apt-get install jq -y
 	read -p "Enter your CSP API Token: " CSPAPITOKEN
-	echo -e "\nCSP API Token set to - $CSPAPITOKEN"
+	echo -e "\nCSP API Token set to - $CSPAPITOKEN \n"
 	read -p "Enter your ORG ID: " ORGID
-	echo -e "\nORG ID set to - $ORGID"
+	echo -e "\nORG ID set to - $ORGID \n"
 	read -p "Enter your SDDC ID: " SDDCID
-	echo -e "\nSDDC ID set to - $SDDCID"
+	echo -e "\nSDDC ID set to - $SDDCID \n"
 	AUTH_HDR="Authorization: Bearer `curl https://console.cloud.vmware.com/csp/gateway/am/api/auth/api-tokens/authorize -d refresh_token=$CSPAPITOKEN| jq --raw-output '.access_token'`"
 	echo -e "\nGenerating SDDC JSON to extract info"
 	curl -H "$AUTH_HDR" https://vmc.vmware.com/vmc/api/orgs/"$ORGID"/sddcs/"$SDDCID" -o sddcjson.json
