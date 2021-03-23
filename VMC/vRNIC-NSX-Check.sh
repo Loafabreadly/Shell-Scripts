@@ -2,6 +2,18 @@
 #Name: vRNIC-NSX-Check
 #Author: Brad Snurka
 #Purpose: Checks commonly faced issues when attempting to add a vRNI/vRNIC Collector VM to a VMC Environment. Checks that the required prerequisites are met via API calls
+#Prerequisites: Run the following prior to executing this script
+#
+# Login as support
+# ub
+# curl -k https://raw.githubusercontent.com/Birdgeek/Shell-Scripts/master/VMC/vRNIC-NSX-Check.sh -o vRNIC-NSX-Check.sh
+# sudo chown ubuntu:ubuntu vRNIC-NSX-Check.sh
+# sudo chmod +x vRNIC-NSX-Check.sh
+#
+#Usage: ./vRNIC-NSX-Check.sh
+#Required inputs: CSP API Token, ORG ID, SDDC ID
+
+
 #Functions
 checkExitStatus() {
 	if [$? -eq 0]
@@ -29,11 +41,11 @@ prepEnv() {
 	sudo curl -k https://gist.githubusercontent.com/h0bbel/4b28ede18d65c3527b11b12fa36aa8d1/raw/314419c944ce401039c7def964a3e06324db1128/sources.list -o /etc/apt/sources.list
 	sudo apt-get install jq -y
 	read -p "Enter your CSP API Token: " CSPAPITOKEN
-	echo -e "CSP API Token set to - $CSPAPITOKEN"
+	echo -e "\nCSP API Token set to - $CSPAPITOKEN"
 	read -p "Enter your ORG ID: " ORGID
-	echo -e "ORG ID set to - $ORGID"
+	echo -e "\nORG ID set to - $ORGID"
 	read -p "Enter your SDDC ID: " SDDCID
-	echo -e "SDDC ID set to - $SDDCID"
+	echo -e "\nSDDC ID set to - $SDDCID"
 	AUTH_HDR="Authorization: Bearer `curl https://console.cloud.vmware.com/csp/gateway/am/api/auth/api-tokens/authorize -d refresh_token=$CSPAPITOKEN| jq --raw-output '.access_token'`"
 	echo -e "\nGenerating SDDC JSON to extract info"
 	curl -H "$AUTH_HDR" https://vmc.vmware.com/vmc/api/orgs/"$ORGID"/sddcs/"$SDDCID" -o sddcjson.json
@@ -50,20 +62,28 @@ prepEnv() {
 	VCFQDN="`cat sddcjson.json | jq --raw-output '.resource_config.vc_url'` | awk -F/ '{print $3}'"
 }
 
+printEnv() {
+	echo -e "\nSDDC Name------------: $SDDCNAME"
+	echo -e "\nSDDC Ver-------------: $SDDCVER"
+	echo -e "\nSDDC ID--------------: $SDDCID"
+	echo -e "\n\nvCenter FQDN-------: $VCFQDN"
+	echo -e "\nvCenter Priv IP------: $VCPRIVATEIP"
+	echo -e "\nvCenter Pub IP-------: $VCPUBLICIP"
+	echo -e "\n\nNSX FQDN-----------: $NSXFQDN"
+	echo -e "\nNSX Reverse Proxy----: $NSXRP"
+	echo -e "\nNSX Priv IP----------: $NSXIP"
+	sleep 5
+
+}
+
 runVCChecks() {
 	echo -e "\nRunning CURL to test 443 inbound access to vCenter"
 	echo -e "\n\nTesting Private IP"
-	reply="`curl -v -k telnet://"$VCPRIVATEIP":443`"
-	echo "$reply"
-	sleep 2
+	timeout 5s curl -v -k telnet://"$VCPRIVATEIP":443
 	echo -e "\n\nTesting Public IP"
-	reply="`curl -v -k telnet://"$VCPUBLICIP":443`"
-	echo "$reply"
-	sleep 2
+	timeout 5s curl -v -k telnet://"$VCPUBLICIP":443
 	echo -e "\n\nTesting FQDN"
-	reply="`curl -v -k telnet://"$VCFQDN":443`"
-	echo "$reply"
-	sleep 2
+	timeout 5s curl -v -k telnet://"$VCFQDN":443
 	echo -e "\nTests Complete\nWe would expect 1 of the IP CURLs to fail as VC can only resolve over one IP types at a time"
 	read -p "Did more than 1 of the CURL attempts above fail? (yes/no)" answer
 	if ["$answer" == "yes"]
@@ -82,11 +102,9 @@ runVCChecks() {
 runNSXChecks() {
 	echo -e "\nRunning CURL to test 443 inbound access to NSX Manager"
 	echo -e "\n\nTesting Private IP"
-	reply="`curl -v -k telnet://"$NSXIP":443`"
-	echo "$reply"
-	sleep 2
+	timeout 5s curl -v -k telnet://"$NSXIP":443
 	echo -e "\n\nTesting FQDN"
-	reply="`curl -v -k telnet://"$NSXFQDN":443`"
+	timeout 5s curl -v -k telnet://"$NSXFQDN":443
 	echo "$reply"
 	sleep 2
 	echo -e "\nTests Complete\n"
@@ -117,17 +135,19 @@ runNSXChecks() {
 	sleep 10
 	echo -e "Testing NSX-T Manager's API Reply using Reverse Proxy"
 	sleep 1
-	echo -e "\nNode Test"
-	curl -i -k -H 'Content-Type: application/json' -H "$AUTH_HDR" -X GET $NSXRP/policy/api/v1/node
-	sleep 1
-	echo -e "\nHosts Test"
-	curl -i -k -H 'Content-Type: application/json' -H "$AUTH_HDR" -X GET $NSXRP/policy/api/v1/fabric/nodes
-	sleep 1
-	echo -e "\nFirewall Status Test"
-	curl -i -k -H 'Content-Type: application/json' -H "$AUTH_HDR" -X GET $NSXRP/policy/api/v1/firewall/status	
+	echo -e "\nTier-0 Test"
+	curl -i -k -H 'Content-Type: application/json' -H "$AUTH_HDR" -X GET $NSXRP/policy/api/v1/infra/tier-0s
+	sleep 2
+	echo -e "\nTier-1 Test"
+	curl -i -k -H 'Content-Type: application/json' -H "$AUTH_HDR" -X GET $NSXRP/policy/api/v1/infra/tier-1s
+	sleep 2
+	echo -e "\nDNS Forwarders Test"
+	curl -i -k -H 'Content-Type: application/json' -H "$AUTH_HDR" -X GET $NSXRP/policy/api/v1/infra/dns-forwarder-zones
+	sleep 2
 }
 
 #Execute Script
 prepEnv
+printEnv
 runVCChecks
 runNSXChecks
