@@ -15,6 +15,9 @@ Read more about AMP [Here](https://cubecoders.com)
 * ```./Ubuntu/grp.sh``` - Git Reset Pull on the Shell Scripts repo to auto-pull updates
 * ```./Ubuntu/up.sh``` - Updates System - (Called by ```upds``` command)
 
+### VMware Cloud Scripts
+*````./vRNIC-NSX-Check.sh``` - Script to check for required network connectivity between vRNIC Collector VM and VMC SDDC NSX Manager
+
 ## Installation
 Clone the Repository, modify to allow for script execution, run the install script
 
