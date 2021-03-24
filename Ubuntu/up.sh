@@ -3,7 +3,7 @@
 #Functions
 checkExitStatus() {
 
-	if [$? -eq 0]
+	if [ $? -eq 0 ]
 	then
 		echo
 		echo "Success"
@@ -14,7 +14,7 @@ checkExitStatus() {
 		echo
 		
 		read -p "The last command exited with an error. Exit script? (yes/no) " answer
-		if ["$answer" == "yes"]
+		if [ "$answer" == "yes" ]
 		then
 			exit 1
 		fi

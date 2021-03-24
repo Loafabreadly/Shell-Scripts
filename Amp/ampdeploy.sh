@@ -14,11 +14,10 @@ checkExitStatus() {
 		echo
 		
 		read -p "The last command exited with an error. Exit script? (yes/no) " answer
-
-            if [ "$answer" == "yes" ]
-            then
-                exit 1
-            fi
+		if [ "$answer" == "yes" ]
+		then
+			exit 1
+		fi
 	fi
 }
 
