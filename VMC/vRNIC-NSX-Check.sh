@@ -2,9 +2,13 @@
 
 #Name: vRNIC-NSX-Check
 #Author: Brad Snurka
+#Version: 1.0
 #Purpose: Checks commonly faced issues when attempting to add a vRNI/vRNIC Collector VM to a VMC Environment. Checks that the required prerequisites are met via API calls
 #Prerequisites: Run the following prior to executing this script
 #
+# Login as consoleuser
+# run setup command - get through at least Network Configuration (Step 2) if not already setup
+# logout
 # Login as support
 # ub
 # curl -k https://raw.githubusercontent.com/Birdgeek/Shell-Scripts/master/VMC/vRNIC-NSX-Check.sh -o vRNIC-NSX-Check.sh
@@ -40,8 +44,10 @@ prepEnv() {
 	#Installs the Debian APT Source list for JQ install
 	echo -e "\nSetting up APT Repositories and installing JQ for use with our API calls\n"
 	sudo curl -k https://gist.githubusercontent.com/h0bbel/4b28ede18d65c3527b11b12fa36aa8d1/raw/314419c944ce401039c7def964a3e06324db1128/sources.list -o /etc/apt/sources.list
+	sudo apt update
 	sudo apt-get install jq -y
 	echo -e "\n\n"
+	
 	#Collect required information from end-user
 	read -p "Enter your CSP API Token: " CSPAPITOKEN
 	echo -e "\nCSP API Token set to - $CSPAPITOKEN \n"
@@ -71,7 +77,7 @@ prepEnv() {
 
 printEnv() {
 	echo -e "\nSDDC Name------------: $SDDCNAME"
-	echo -e "SDDC Ver-------------: $SDDCVER"
+	echo -e "SDDC Version---------: $SDDCVER"
 	echo -e "SDDC ID--------------: $SDDCID"
 	echo -e "\n\nvCenter FQDN---------: $VCFQDN"
 	echo -e "vCenter Priv IP------: $VCPRIVATEIP"
@@ -122,8 +128,8 @@ runNSXChecks() {
 			fi
 		done
 	fi
-	sleep 3
 	echo -e "\nExecuting API Calls to test if NSX Manager responds as expected\n"
+	sleep 2
 	echo -e "\n\nTesting NSX Reverse Proxy Call\n"
 	curl -i -k -H 'Content-Type: application/json' -H "$AUTH_HDR" -X GET $NSXRP/policy/api/v1/infra/sites/default/enforcement-points
 	sleep 2
@@ -133,7 +139,7 @@ runNSXChecks() {
 	echo -e "\nTests completed, there should be two instances of the same enforcement-points data printed"
 	echo -e "\nIf neither worked, assume the CSP API Token is bad and re-generate a new token, potentially specifying ALL ROLES as a sanity check"
 	echo -e "\nIf the Private IP lookup worked but Reverse Proxy did not, assume a DNS issue."
-	echo -e "\nIf the Reverse Proxy lookup worked but the private IP one did, contact VMC Support."
+	echo -e "\nIf the Reverse Proxy lookup worked but the private IP one did not, contact VMC Support."
 	sleep 10
 	echo -e "\nTesting NSX-T Manager's API Reply using Reverse Proxy\n"
 	sleep 1
