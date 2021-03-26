@@ -23,13 +23,9 @@
 checkExitStatus() {
 	if [ $? -eq 0 ]
 	then
-		echo
-		echo "Success"
-		echo
+		echo -e "\nSuccess\n"
 	else
-		echo
-		echo "[ERROR] Process Failed!"
-		echo
+		echo -e "\n[ERROR] Process Failed!\n"
 		read -p "The last command exited with an error. Exit script? (yes/no) " answer
 		if [ "$answer" == "yes" ]
 		then
@@ -98,7 +94,8 @@ runVCChecks() {
 	timeout 5s curl -v -k telnet://"$VCFQDN":443
 	echo -e "\nTests Complete\nWe would expect 1 of the IP CURLs to fail as VC can only resolve over one IP types at a time"
 	read -n1 -p "Did more than 1 of the CURL attempts above fail? (y/N): " answer
-	if [ "$answer" == "y" ];	then
+	if [ "$answer" == "y" ]
+	then
 		echo -e "\nThis likely means you are missing some required MGW FW rules allowing connections between the Collector and SDDC vCenter. Please resolve & re-test"
 		echo -e "\nPress any key to quit"
 		while [ true ]; do
@@ -118,7 +115,8 @@ runNSXChecks() {
 	timeout 5s curl -v -k telnet://"$NSXFQDN":443
 	echo -e "\nTests Complete\n"
 	read -n1 -p "Did either of the above CURL attempts fail? (y/N): " answer
-	if [ "$answer" == "y" ];	then
+	if [ "$answer" == "y" ]
+	then
 		echo -e "\nThis likely means you are missing some required MGW FW rules allowing connections between the Collector and SDDC NSX Manager. Please resolve & re-test"
 		echo -e "\nPress any key to quit"
 		while [ true ]; do
