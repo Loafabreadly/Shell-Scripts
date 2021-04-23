@@ -1,5 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
+
+## [V0.5] - 3-24-2021
+### Added
+- Added vRNIC-NSX-Check.sh version 1.0
+
+### Changed
+- Beefed up Update Mechnisms across all scripts
+- Improved Catchall functionality for cmd execution failure
+
 ## [v0.4] - 7-18-2020
 ### Added
 - Added ./Amp/restartADS.sh as a workaround to the current bug in v2.0.2
