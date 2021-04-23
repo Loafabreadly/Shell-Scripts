@@ -42,7 +42,7 @@ update() {
     sudo apt-get upgrade -y;
 	checkExitStatus
 	read -p "Do you want to upgrade the Distro OS? (yes/no) " answer
-	if ["$answer" == "yes"]
+	if [ "$answer" == "yes" ]
 	then
 		echo "Performing Distro Upgrades"
 		echo
@@ -84,7 +84,7 @@ exitScript() {
 	echo
 	exit
 	read -p "Do you wish to reboot now? (yes/no) " answer
-	if ["$answer" == "yes"]
+	if [ "$answer" == "yes" ]
 	then
 		sudo reboot now
 	fi
