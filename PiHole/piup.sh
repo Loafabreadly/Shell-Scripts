@@ -18,7 +18,7 @@ checkExitStatus() {
 greeting() {
 
 	echo
-	echo "Hello, $USER. Running Pi-Hole Auto-Updater v0.2"
+	echo "Hello, $USER. Running Pi-Hole Auto-Updater v0.3"
 	echo
 }
 
@@ -87,5 +87,5 @@ update
 housekeeping
 endSystemUpdate
 piholeUpdate
-piholeDark
+#piholeDark - No longer required as PiHole includes DarkUI options by default now
 exitScript
