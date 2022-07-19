@@ -27,12 +27,12 @@ update() {
 	echo
 	echo "Updating packages"
 	echo
-    sudo apt-get update;
+    sudo apt update;
 	checkExitStatus
 	echo
 	echo "Upgrading packages"
 	echo
-    sudo apt-get upgrade -y;
+    sudo apt upgrade -y;
 	checkExitStatus
 	read -p "Do you want to upgrade the Distro OS? (yes/no) " answer
 	if [ "$answer" == "yes" ]
@@ -40,7 +40,7 @@ update() {
 		echo "Performing Distro Upgrades"
 		echo
 		echo
-		sudo apt-get dist-upgrade -y;
+		sudo apt dist-upgrade -y;
 		checkExitStatus	
 	fi
 }
@@ -49,12 +49,12 @@ housekeeping() {
 	echo
 	echo "Auto Removing old packages"
 	echo
-	sudo apt-get autoremove -y;
+	sudo aptautoremove -y;
 	checkExitStatus
 	echo
 	echo "Running APT Auto-clear"
 	echo
-	sudo apt-get autoclean -y;
+	sudo apt autoclean -y;
 	checkExitStatus
 }
 

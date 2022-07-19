@@ -24,10 +24,10 @@ greeting() {
 
 update() {
 
-    sudo apt-get update;
+    sudo apt update;
 	checkExitStatus
 
-    sudo apt-get upgrade -y;
+    sudo apt upgrade -y;
 	checkExitStatus
 }
 
@@ -35,12 +35,12 @@ housekeeping() {
 	echo
 	echo "Auto Removing old packages"
 	echo
-	sudo apt-get autoremove -y;
+	sudo apt autoremove -y;
 	checkExitStatus
 	echo
 	echo "Running APT Auto-clear"
 	echo
-	sudo apt-get autoclean -y;
+	sudo aptautoclean -y;
 	checkExitStatus
 }
 
