@@ -49,7 +49,7 @@ housekeeping() {
 	echo
 	echo "Auto Removing old packages"
 	echo
-	sudo aptautoremove -y;
+	sudo apt autoremove -y;
 	checkExitStatus
 	echo
 	echo "Running APT Auto-clear"

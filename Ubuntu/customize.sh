@@ -7,15 +7,11 @@ sudo sed -i 's/satine/'$hostName'/g' /etc/hosts
 echo
 echo "Hostname Set!"
 echo
-echo
-echo "Fixing known Ubuntu1804 DNS issue"
-echo
-sudo ln -sf ../run/systemd/resolve/resolv.conf resolv.conf
-read -p 'Please enter your desirec IP (10.0.50.x):' ip
+read -p 'Please enter your desired IP (10.0.50.x):' ip
 echo
 echo "Setting IP config"
 echo
-sudo sed -i 's/10.0.50.30/'$ip'/' /etc/netplan/50-cloud-init.yaml
+sudo sed -i 's/10.0.50.30/'$ip'/' /etc/netplan/00-installer-config.yaml
 echo
 echo "Installing Script repository"
 echo
