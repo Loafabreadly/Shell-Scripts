@@ -3,7 +3,6 @@
 #Functions
 echo
 echo "Printing amount of space before operation"
-echo
 sudo df -h / | awk -F" " '{ print $4," " ,$3 }'
 echo
 echo "Extending Logical Volume"
@@ -17,5 +16,4 @@ echo
 echo "Actions Completed!"
 echo
 echo "Printing amount of space after operation"
-echo
 sudo df -h / | awk -F" " '{ print $4," " ,$3 }'
