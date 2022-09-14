@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [V0.6] - 9-13-2022
+### Added
+- ./Ubuntu/resizeDisk.sh to resize the logical volume and filesystem to 100% Free. Commonly used after extending backing VM's disk
+
 ### Changed
 - Refactored based off Git Username Change
 - Modified ./Ubuntu/up.sh to use the changed APT command references for Ubuntu 22.04

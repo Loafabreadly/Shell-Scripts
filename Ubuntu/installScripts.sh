@@ -18,6 +18,7 @@ startInstall () {
 	sudo cp Ubuntu/up.sh ~/bin/upds
 	sudo cp Ubuntu/installScripts.sh ~/bin/reloadscripts
 	sudo cp Ubuntu/customize.sh ~/bin/customizesys
+	sudo cp Ubuntu/resizeDisk.sh ~/bin/resizedisk
 	echo
 	echo "Attempting to export variables"
 	echo
