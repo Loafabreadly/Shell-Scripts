@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [V0.6] - 9-13-2022
+### Changed
+- Refactored based off Git Username Change
+- Modified ./Ubuntu/up.sh to use the changed APT command references for Ubuntu 22.04
+- Modified ./PiHole/piup to no longer clone in a 3rd party dark UI as PiHole includes dark UI by default now
+- Updated README
+
+### Removed
+- Removed vRNIC-NSX-Check.sh script as it does not relate to my HomeLab
+
 ## [V0.5] - 3-24-2021
 ### Added
 - Added vRNIC-NSX-Check.sh version 1.0

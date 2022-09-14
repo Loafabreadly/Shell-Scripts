@@ -17,10 +17,10 @@ echo "Installing Script repository"
 echo
 sudo apt update
 sudo apt install git
-sudo git config --global user.name "Birdgeek"
+sudo git config --global user.name "Loafabreadly"
 sudo git config --global user.email "birdgeekthree@gmail.com"
 sudo git config --list | grep user.
-sudo git clone https://github.com/Birdgeek/Shell-Scripts.git
+sudo git clone https://github.com/Loafbreadly/Shell-Scripts.git
 sudo chmod -R +x ./Shell-Scripts/
 source ./Shell-Scripts/Ubuntu/installScripts.sh
 echo "Customization complete! Please reboot the system"
