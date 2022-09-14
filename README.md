@@ -12,7 +12,7 @@ Read more about AMP [Here](https://cubecoders.com)
 
 ### Ubuntu Scripts :penguin:
 * ```./Ubuntu/installScripts.sh``` - Script to install all the scripts! Script-ception! (Called by ```reloadscripts``` command)
-* ```./Ubuntu/grp.sh``` - Git Reset Pull on the Shell Scripts repo to auto-pull updates (Called by ```upds``` command)
+* ```./Ubuntu/grp.sh``` - Git Reset Pull on the Shell Scripts repo to auto-pull updates (Called by ```grp``` command)
 * ```./Ubuntu/up.sh``` - Updates System - (Called by ```upds``` command)
 * ```./Ubuntu/resizeDisk.sh``` - resize the logical volume and filesystem to 100% Free - (Called by ```resizedisk``` command)
 
