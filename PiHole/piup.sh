@@ -40,7 +40,7 @@ housekeeping() {
 	echo
 	echo "Running APT Auto-clear"
 	echo
-	sudo aptautoclean -y;
+	sudo apt autoclean -y;
 	checkExitStatus
 }
 
