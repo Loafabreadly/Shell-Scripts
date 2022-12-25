@@ -18,7 +18,7 @@ checkExitStatus() {
 greeting() {
 
 	echo
-	echo "Hello, $USER. Running AMP Auto-Updater v0.3"
+	echo "Hello, $USER. Running AMP Auto-Updater v0.4"
 	echo
 }
 
@@ -54,7 +54,7 @@ endSystemUpdate() {
 }
 
 ampUpdate() {
-	sudo su - amp -c "ampinstmgr upgradeall;ampinstmgr startall"
+	sudo su - amp -c "ampinstmgr upgradeall"
 }
 
 exitScript() {
