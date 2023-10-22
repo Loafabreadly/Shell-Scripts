@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Define color codes
-RED='\033[31m '
-GREEN='\033[32m '
-RESET='\033[0m '
+RED='\033[31m'
+GREEN='\033[32m'
+RESET='\033[0m'
 
 #Functions
 checkExitStatus() {
@@ -12,7 +12,7 @@ checkExitStatus() {
 		echo -e "\n${GREEN}Success${RESET}\n"
 	else
 		echo -e "\n[${RED}ERROR}${RESET}] Process Failed!\n"
-		read -p "The last command exited with an error. ${RED}Exit script?${RESET} (${GREEN}yes${RESET}/${RED}no${RESET}) " answer
+		read -p "The last command exited with an error. Exit script? (yes/no) " answer
 		if [ "$answer" == "yes" ]
 		then
 			exit 1
@@ -23,7 +23,7 @@ checkExitStatus() {
 greeting() {
 
 	echo
-	echo "Hello, $USER. Running Pi-Hole Auto-Updater v0.4"
+	echo -e "Hello, $USER. Running Pi-Hole Auto-Updater v0.4"
 	echo
 }
 
@@ -51,12 +51,10 @@ housekeeping() {
 
 endSystemUpdate() {
 
-	echo
-	echo "---------------------------"
-	echo "- ${GREEN}System Update Complete!${RESET} -"
-	echo "-      ${GREEN}Please Reboot${RESET}      -"
-	echo "---------------------------"
-	echo
+	echo -e "\n---------------------------"
+	echo -e "- ${GREEN}System Update Complete!${RESET} -"
+	echo -e "-      ${GREEN}Please Reboot${RESET}      -"
+	echo -e "---------------------------\n"
 }
 
 piholeUpdate() {
@@ -69,8 +67,8 @@ piholeUpdate() {
 exitScript() {
 	echo
 	echo "---------------------------"
-	echo "- ${GREEN}Pihole Update Completed${RESET} -"
-	echo "-      ${GREEN}Exiting Script${RESET}     -"
+	echo -e "- ${GREEN}Pihole Update Completed${RESET} -"
+	echo -e "-      ${GREEN}Exiting Script${RESET}     -"
 	echo "---------------------------"
 	echo
 	exit

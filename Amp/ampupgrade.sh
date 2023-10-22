@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Define color codes
-RED='\033[31m '
-GREEN='\033[32m '
-RESET='\033[0m '
+RED='\033[31m'
+GREEN='\033[32m'
+RESET='\033[0m'
 
 #Functions
 checkExitStatus() {
@@ -11,8 +11,8 @@ checkExitStatus() {
 	then
 		echo -e "\n${GREEN}Success${RESET}\n"
 	else
-		echo -e "\n[${RED}ERROR}${RESET}] Process Failed!\n"
-		read -p "The last command exited with an error. ${RED}Exit script?${RESET} (${GREEN}yes${RESET}/${RED}no${RESET}) " answer
+		echo -e "\n[${RED}ERROR${RESET}] Process Failed!\n"
+		read -p "The last command exited with an error. Exit script? (yes/no) " answer
 		if [ "$answer" == "yes" ]
 		then
 			exit 1
@@ -23,7 +23,7 @@ checkExitStatus() {
 greeting() {
 
 	echo
-	echo "Hello, ${GREEN}$USER.${RESET} Running AMP Auto-Updater ${GREEN}v0.6${RESET}"
+	echo -e "Hello, ${GREEN}$USER.${RESET} Running AMP Auto-Updater ${GREEN}v0.6${RESET}"
 	echo
 }
 
@@ -51,12 +51,10 @@ housekeeping() {
 
 endSystemUpdate() {
 
-	echo
-	echo "---------------------------"
-	echo "- ${GREEN}System Update Complete!${RESET} -"
-	echo "-      ${GREEN}Please Reboot${RESET}      -"
-	echo "---------------------------"
-	echo
+	echo -e "\n---------------------------"
+	echo -e "- ${GREEN}System Update Complete!${RESET} -"
+	echo -e "-      ${GREEN}Please Reboot${RESET}      -"
+	echo -e "---------------------------\n"
 }
 
 ampUpdate() {
@@ -64,12 +62,10 @@ ampUpdate() {
 }
 
 exitScript() {
-	echo
-	echo "------------------------"
-	echo "- ${GREEN}AMP Update Completed${RESET} -"
-	echo "-    ${GREEN}Exiting Script${RESET}    -"
-	echo "------------------------"
-	echo
+	echo -e "\n------------------------"
+	echo -e "- ${GREEN}AMP Update Completed${RESET} -"
+	echo -e "-    ${GREEN}Exiting Script${RESET}    -"
+	echo -e "------------------------\n"
 	exit
 }
 
