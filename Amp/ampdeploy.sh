@@ -1,13 +1,18 @@
 #!/bin/bash
 
+# Define color codes
+RED='\033[31m'
+GREEN='\033[32m'
+RESET='\033[0m'
+
 #Functions
 checkExitStatus() {
 	if [ $? -eq 0 ]
 	then
-		echo -e "\nSuccess\n"
+		echo -e "\n${GREEN}Success${RESET}\n"
 	else
-		echo -e "\n[ERROR] Process Failed!\n"
-		read -p "The last command exited with an error. Exit script? (yes/no) " answer
+		echo -e "\n[${RED}ERROR}${RESET}] Process Failed!\n"
+		read -p "The last command exited with an error. ${RED}Exit script?${RESET} (${GREEN}yes${RESET}/${RED}no${RESET}) " answer
 		if [ "$answer" == "yes" ]
 		then
 			exit 1
@@ -67,12 +72,6 @@ exitScript() {
 }
 
 ampDeploy() {
-	echo
-	echo "Fixing known Ubuntu1804 DNS issue"
-	echo
-	sudo rm /etc/resolv.conf
-	sudo ln -sf ../run/systemd/resolve/resolv.conf /etc/resolv.conf
-	sudo systemctl restart resolvconf
 	echo
 	echo "Installing AMP"
 	echo

@@ -12,7 +12,7 @@ checkExitStatus() {
 		echo -e "\n${GREEN}Success${RESET}\n"
 	else
 		echo -e "\n[${RED}ERROR}${RESET}] Process Failed!\n"
-		read -p "The last command exited with an error. ${RED}Exit script?${RESET} (yes/no) " answer
+		read -p "The last command exited with an error. ${RED}Exit script?${RESET} (${GREEN}yes${RESET}/${RED}no${RESET}) " answer
 		if [ "$answer" == "yes" ]
 		then
 			exit 1
@@ -23,7 +23,7 @@ checkExitStatus() {
 greeting() {
 
 	echo
-	echo "Hello, $USER. Running Pi-Hole Auto-Updater v0.3"
+	echo "Hello, $USER. Running Pi-Hole Auto-Updater v0.4"
 	echo
 }
 
@@ -53,7 +53,8 @@ endSystemUpdate() {
 
 	echo
 	echo "---------------------------"
-	echo "- System Update Complete! -"
+	echo "- ${GREEN}System Update Complete!${RESET} -"
+	echo "-      ${GREEN}Please Reboot${RESET}      -"
 	echo "---------------------------"
 	echo
 }
@@ -64,23 +65,12 @@ piholeUpdate() {
 	checkExitStatus
 }
 
-piholeDark() {
-	read -p "Do you want to install the Dark UI for PiHole? (yes/no)" answer
-	if ["$answer" == "yes"]
-	then
-		echo "Installing Dark UI"
-		cd /var/www/html/
-		sudo wget https://raw.githubusercontent.com/lkd70/PiHole-Dark/master/install.sh
-		sudo chmod +x install.sh
-		sudo ./install.sh
-	fi
-}
 
 exitScript() {
 	echo
 	echo "---------------------------"
-	echo "- Pihole Update Completed -"
-	echo "-      Exiting Script     -"
+	echo "- ${GREEN}Pihole Update Completed${RESET} -"
+	echo "-      ${GREEN}Exiting Script${RESET}     -"
 	echo "---------------------------"
 	echo
 	exit
@@ -92,5 +82,4 @@ update
 housekeeping
 endSystemUpdate
 piholeUpdate
-#piholeDark - No longer required as PiHole includes DarkUI options by default now
 exitScript

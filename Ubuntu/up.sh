@@ -1,13 +1,18 @@
 #!/bin/bash
 
+# Define color codes
+RED='\033[31m'
+GREEN='\033[32m'
+RESET='\033[0m'
+
 #Functions
 checkExitStatus() {
 	if [ $? -eq 0 ]
 	then
-		echo -e "\nSuccess\n"
+		echo -e "\n${GREEN}Success${RESET}\n"
 	else
-		echo -e "\n[ERROR] Process Failed!\n"
-		read -p "The last command exited with an error. Exit script? (yes/no) " answer
+		echo -e "\n[${RED}ERROR}${RESET}] Process Failed!\n"
+		read -p "The last command exited with an error. ${RED}Exit script?${RESET} (${GREEN}yes${RESET}/${RED}no${RESET}) " answer
 		if [ "$answer" == "yes" ]
 		then
 			exit 1
@@ -18,7 +23,7 @@ checkExitStatus() {
 greeting() {
 
 	echo
-	echo "Hello, $USER. Running System  Updater v0.6"
+	echo "Hello, ${GREEN}$USER.${RESET} Running System  Updater ${GREEN}v0.7${RESET}"
 	echo
 }
 
@@ -34,7 +39,7 @@ update() {
 	echo
     sudo apt upgrade -y;
 	checkExitStatus
-	read -p "Do you want to upgrade the Distro OS? (yes/no) " answer
+	read -p "Do you want to upgrade the Distro OS? (${GREEN}yes${RESET}/${RED}no${RESET}) " answer
 	if [ "$answer" == "yes" ]
 	then
 		echo "Performing Distro Upgrades"
@@ -62,8 +67,8 @@ endSystemUpdate() {
 
 	echo
 	echo "---------------------------"
-	echo "- System Update Complete! -"
-	echo "-      Please Reboot      -"
+	echo "- ${GREEN}System Update Complete!${RESET} -"
+	echo "-      ${GREEN}Please Reboot${RESET}      -"
 	echo "---------------------------"
 	echo
 }
@@ -71,12 +76,12 @@ endSystemUpdate() {
 exitScript() {
 	echo
 	echo "--------------------"
-	echo "- Update Completed -"
-	echo "-  Exiting Script  -"
+	echo "- ${GREEN}Update Completed${RESET}-"
+	echo "-  ${GREEN}Exiting Script${RESET}  -"
 	echo "--------------------"
 	echo
 	exit
-	read -p "Do you wish to reboot now? (yes/no) " answer
+	read -p "Do you wish to reboot now? (${GREEN}yes${RESET}/${RED}no${RESET}) " answer
 	if [ "$answer" == "yes" ]
 	then
 		sudo reboot now
